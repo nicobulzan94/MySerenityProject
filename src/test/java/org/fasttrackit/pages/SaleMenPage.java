@@ -19,10 +19,7 @@ public class SaleMenPage extends PageObject {
     private WebElementFacade dobbyAddedtoCartSuccessMsg;
     @FindBy(id = "advice-required-entry-attribute92")
     private WebElementFacade errorMsgSwatchRequired;
-    @FindBy(css = ".add-to-links .link-wishlist")
-    private WebElementFacade dobbyAddtoWishlist;
-    @FindBy(css = ".success-msg span")
-    private WebElementFacade wishlistSuccessMsg;
+
 
 
 
@@ -52,13 +49,7 @@ public class SaleMenPage extends PageObject {
         return errorMsgSwatchRequired.getText();
     }
 
-    public void clickAddToWishlistButton() {
-        clickOn(dobbyAddtoWishlist);
-    }
 
-    public String getWishlistSuccessMsg() {
-        return wishlistSuccessMsg.getText();
-    }
 
 
 
