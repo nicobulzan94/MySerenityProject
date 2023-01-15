@@ -3,6 +3,7 @@ package org.fasttrackit.steps;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.steps.ScenarioSteps;
+import org.apache.http.conn.util.PublicSuffixList;
 import org.fasttrackit.pages.AccountPage;
 import org.fasttrackit.pages.HomePage;
 import org.fasttrackit.pages.LoginPage;
@@ -38,9 +39,24 @@ public class LoginSteps extends ScenarioSteps {
 
     @Step
     public void userIsLoggedIn(String userName) {
-//        Assert.assertTrue(accountPage.isWelcomeText(userName));
-//        Assert.assertEquals("Hello, " + userName + "!", accountPage.getWelcomeText());
-        accountPage.userIsLoggedIn(userName);
+//      Assert.assertTrue(accountPage.isWelcomeText(userName));
+        Assert.assertEquals("Hello, " + userName + "!", accountPage.getWelcomeText());
+ //     accountPage.userIsLoggedIn(userName);
+    }
+
+    @Step
+    public void fillInRequiredFields() {
+        Assert.assertEquals("This is a required field.", loginPage.getRequiredFields());
+    }
+
+    @Step
+    public void incorrectCredentErrMsg() {
+        Assert.assertEquals("Invalid login or password.", loginPage.getIncorrectCredentialsMsg());
+    }
+
+    @Step
+    public void reqEmailFielMsgdShouldNotBeVisible() {
+        loginPage.reqEmailFieldNotVisible();
     }
 
     @Step
@@ -50,4 +66,9 @@ public class LoginSteps extends ScenarioSteps {
         typePassword(pass);
         clickLogin();
     }
+
+
+
+
+
 }

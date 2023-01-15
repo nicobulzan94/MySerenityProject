@@ -16,6 +16,12 @@ public class LoginPage extends PageObject {
     @FindBy(id = "send2")
     private WebElementFacade loginButton;
 
+    @FindBy(id = "advice-required-entry-email")
+    private WebElementFacade emailRequiredField;
+
+    @FindBy(css = ".error-msg")
+    private WebElementFacade incorrectCredentials;
+
     public void setEmailField(String value){
         typeInto(emailField, value);
     }
@@ -26,6 +32,17 @@ public class LoginPage extends PageObject {
 
     public void clickLoginButton(){
         clickOn(loginButton);
+    }
+
+    public String getRequiredFields (){
+        return emailRequiredField.getText();
+    }
+    public String getIncorrectCredentialsMsg (){
+        return incorrectCredentials.getText();
+    }
+
+    public void reqEmailFieldNotVisible() {
+        emailRequiredField.shouldNotBeVisible();
     }
 
 }

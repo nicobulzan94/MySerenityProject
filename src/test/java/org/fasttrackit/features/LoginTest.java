@@ -23,12 +23,29 @@ public class LoginTest {
         driver.manage().window().maximize();
     }
 
+
+    @Test
+    public void loginWithEmptyFields() {
+        loginSteps.navigateToLoginPage();
+        loginSteps.clickLogin();
+        loginSteps.fillInRequiredFields();
+    }
+    @Test
+    public void loginWithInvalidCredentials() {
+        loginSteps.navigateToLoginPage();
+        loginSteps.typeUserEmail("te@yopmail.com");
+        loginSteps.typePassword("test123");
+        loginSteps.clickLogin();
+        loginSteps.reqEmailFielMsgdShouldNotBeVisible();
+        loginSteps.incorrectCredentErrMsg();
+    }
+
     @Test
     public void validLoginTest(){
         loginSteps.navigateToLoginPage();
-        loginSteps.typeUserEmail("cosmin@fasttrackit.org");
-        loginSteps.typePassword("123456");
+        loginSteps.typeUserEmail("test@yopmail.com");
+        loginSteps.typePassword("test123");
         loginSteps.clickLogin();
-        loginSteps.userIsLoggedIn("Cosmin Fast");
+        loginSteps.userIsLoggedIn("test test tester");
     }
 }
