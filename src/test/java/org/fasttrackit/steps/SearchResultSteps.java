@@ -35,6 +35,11 @@ public class SearchResultSteps extends ScenarioSteps {
         Assert.assertEquals("SEARCH RESULTS FOR " + "'" + searchProduct + "'",resultsPage.getSearchWithResultsTitle());
     }
 
+    @Step
+    public void categorySelectorIsDisplayed() {
+        resultsPage.prdctCategorySelectorIsDisplayed();
+    }
+
 
 
 }

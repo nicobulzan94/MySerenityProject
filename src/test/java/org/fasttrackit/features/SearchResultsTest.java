@@ -33,6 +33,7 @@ public class SearchResultsTest {
     @Test
     public void searchWithResults() {
         searchResultSteps.searchWithResults("NECK");
+        searchResultSteps.categorySelectorIsDisplayed();
     }
 
 
