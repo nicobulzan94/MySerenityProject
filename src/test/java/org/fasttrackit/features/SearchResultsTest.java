@@ -1,27 +1,8 @@
 package org.fasttrackit.features;
 
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Managed;
-import net.thucydides.core.annotations.Steps;
-import org.fasttrackit.steps.SearchResultSteps;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
 
-@RunWith(SerenityRunner.class)
-public class SearchResultsTest {
-
-    @Managed(uniqueSession = true)
-    public WebDriver driver;
-
-    @Steps
-    private SearchResultSteps searchResultSteps;
-
-    @Before
-    public void maximiseBrowser(){
-        driver.manage().window().maximize();
-    }
+public class SearchResultsTest extends BaseTest {
 
     @Test
     public void searchWithNoResults() {
@@ -35,6 +16,26 @@ public class SearchResultsTest {
         searchResultSteps.searchWithResults("NECK");
         searchResultSteps.categorySelectorIsDisplayed();
     }
+
+    @Test
+    public void searchForProductSuccessTest() {
+        searchResultSteps.searchAProduct("neck");
+        searchResultSteps.clickOnSearchBarIcon();
+        searchResultSteps.verifyProductIsInList("SILVER DESERT NECKLACE");
+    }
+
+    @Test
+    public void verifyPriceAscendingTest() {
+        searchResultSteps.searchAProduct("neck");
+        searchResultSteps.clickOnSearchBarIcon();
+        searchResultSteps.orderProductsByPrice();
+        searchResultSteps.productsAreSortedByPriceAscending();
+
+    }
+
+
+
+
 
 
 

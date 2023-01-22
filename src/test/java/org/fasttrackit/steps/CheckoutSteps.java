@@ -1,17 +1,9 @@
 package org.fasttrackit.steps;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.fasttrackit.pages.CartPage;
-import org.fasttrackit.pages.CheckoutPage;
-import org.fasttrackit.pages.HomePage;
 import org.junit.Assert;
 
-public class CheckoutSteps extends ScenarioSteps {
-
-    private HomePage homePage;
-    private CartPage cartPage;
-    private CheckoutPage checkoutPage;
+public class CheckoutSteps extends BaseSteps {
 
     @Step
     public void clickShipToDifAddr () {

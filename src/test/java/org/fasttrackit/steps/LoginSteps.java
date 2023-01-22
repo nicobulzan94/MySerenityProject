@@ -1,23 +1,13 @@
 package org.fasttrackit.steps;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.annotations.Steps;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.apache.http.conn.util.PublicSuffixList;
-import org.fasttrackit.pages.AccountPage;
-import org.fasttrackit.pages.HomePage;
-import org.fasttrackit.pages.LoginPage;
+import org.fasttrackit.utils.Messages;
 import org.junit.Assert;
 
-public class LoginSteps extends ScenarioSteps {
-
-    private AccountPage accountPage;
-    private HomePage homePage;
-    private LoginPage loginPage;
+public class LoginSteps extends BaseSteps {
 
     @Step
     public void navigateToLoginPage() {
-        homePage.open();
         homePage.clickOnAccountButton();
         homePage.clickOnLoginLink();
     }
@@ -46,7 +36,7 @@ public class LoginSteps extends ScenarioSteps {
 
     @Step
     public void fillInRequiredFields() {
-        Assert.assertEquals("This is a required field.", loginPage.getRequiredFields());
+        Assert.assertEquals(Messages.THIS_IS_A_REQUIRED_FIELD, loginPage.getRequiredFieldText());
     }
 
     @Step

@@ -1,11 +1,10 @@
 package org.fasttrackit.pages;
 
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends PageObject {
+public class LoginPage extends BasePage {
 
     @FindBy(id = "email")
     private WebElementFacade emailField;
@@ -34,7 +33,8 @@ public class LoginPage extends PageObject {
         clickOn(loginButton);
     }
 
-    public String getRequiredFields (){
+    public String getRequiredFieldText (){
+        waitFor(emailRequiredField);
         return emailRequiredField.getText();
     }
     public String getIncorrectCredentialsMsg (){

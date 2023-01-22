@@ -1,11 +1,10 @@
 package org.fasttrackit.pages;
 
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class RegistrationPage extends PageObject {
+public class RegistrationPage extends BasePage {
 
     @FindBy(id = "firstname")
     private WebElementFacade firstNameField;

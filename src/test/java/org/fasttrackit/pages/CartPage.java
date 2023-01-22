@@ -1,11 +1,12 @@
 package org.fasttrackit.pages;
 
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CartPage extends PageObject {
+import java.util.List;
+
+public class CartPage extends BasePage {
 
     @FindBy(css = ".page-title")
     private WebElementFacade cartEmptyTitle;
@@ -30,6 +31,13 @@ public class CartPage extends PageObject {
     private WebElementFacade invalidCouponErrMsg;
     @FindBy(css = ".title-buttons [title = 'Proceed to Checkout']")
     private WebElementFacade proceedToCheckoutButton;
+
+    @FindBy(css = ".product-cart-price .price")
+    private List<WebElementFacade> listOfPrices;
+    @FindBy(css = "tr:nth-child(2) > td:nth-child(2) > span.price")
+    private WebElementFacade cartTax;
+    @FindBy(css = "#shopping-cart-totals-table tfoot .a-right:nth-child(2)")
+    private WebElementFacade cartGrandTotal;
 
 
     public String setCartEmptyTitle() {
@@ -75,6 +83,28 @@ public class CartPage extends PageObject {
     }
     public void clickProceedToCheckoutButton() {
         clickOn(proceedToCheckoutButton);
+    }
+
+    public int verifySubtotalOfPrice() {
+        int subtotal = 0;
+        for (WebElementFacade element: listOfPrices) {
+            int x = getIntFromPrice(element.getText());
+            subtotal = subtotal + x;
+
+        }
+        return subtotal;
+    }
+
+    public boolean verifyGrandTotal() {
+        int tax = getIntFromPrice(cartTax.getText());
+        int subtotal = verifySubtotalOfPrice();
+        int grandTotal = getIntFromPrice(cartGrandTotal.getText());
+
+        System.out.println(tax);
+        System.out.println(subtotal);
+        System.out.println(grandTotal);
+
+        return grandTotal == tax + subtotal;
     }
 
 

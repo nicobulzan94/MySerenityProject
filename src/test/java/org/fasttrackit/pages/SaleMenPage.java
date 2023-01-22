@@ -1,12 +1,12 @@
 package org.fasttrackit.pages;
 
-import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SaleMenPage extends PageObject {
+public class SaleMenPage extends BasePage {
 
+    //SaleMenPage
     @FindBy(css = "h2.product-name a")
     private WebElementFacade slimFitDobbyOxfordShirtLink;
     @FindBy(css = "#swatch27 .swatch-label")
@@ -21,8 +21,7 @@ public class SaleMenPage extends PageObject {
     private WebElementFacade errorMsgSwatchRequired;
 
 
-
-
+    //SaleMenPage
     public void clickSlimFitDobbyOxfordShirtLink() {
         clickOn(slimFitDobbyOxfordShirtLink);
     }

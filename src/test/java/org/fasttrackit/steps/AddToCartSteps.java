@@ -1,18 +1,10 @@
 package org.fasttrackit.steps;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.fasttrackit.pages.AccountPage;
-import org.fasttrackit.pages.HomePage;
-import org.fasttrackit.pages.LoginPage;
-import org.fasttrackit.pages.SaleMenPage;
+import org.fasttrackit.utils.Messages;
 import org.junit.Assert;
 
-public class AddToCartSteps extends ScenarioSteps {
-    private HomePage homePage;
-    private SaleMenPage saleMenPage;
-
-
+public class AddToCartSteps extends BaseSteps {
 
     @Step
     public void navigateToSaleOxfordShirtPg() {
@@ -37,7 +29,7 @@ public class AddToCartSteps extends ScenarioSteps {
 
     @Step
     public void selectSwatchRequiredErrMsg() {
-        Assert.assertEquals("This is a required field.",saleMenPage.getSwatchErrorMsg());
+        Assert.assertEquals(Messages.THIS_IS_A_REQUIRED_FIELD,saleMenPage.getSwatchErrorMsg());
     }
 
     @Step
@@ -47,6 +39,7 @@ public class AddToCartSteps extends ScenarioSteps {
 
     @Step
     public void doATCSaleOxfordShirt() {
+        navigateToSaleOxfordShirtPg();
         selectColorSwatchSaleOxfordShirt();
         selectSizeSwatchSaleOxfordShirt();
         clickATCSaleOxfordShirt();

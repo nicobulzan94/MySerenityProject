@@ -1,20 +1,13 @@
 package org.fasttrackit.steps;
 
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.steps.ScenarioSteps;
-import org.fasttrackit.pages.CartPage;
-import org.fasttrackit.pages.CheckoutPage;
-import org.fasttrackit.pages.HomePage;
+import org.fasttrackit.utils.Messages;
 import org.junit.Assert;
 
-public class CartSteps extends ScenarioSteps {
-    private HomePage homePage;
-    private CartPage cartPage;
-    private CheckoutPage checkoutPage;
+public class CartSteps extends BaseSteps {
 
     @Step
     public void clickCartButton() {
-        homePage.open();
         homePage.clickCartButton();
     }
 
@@ -25,7 +18,6 @@ public class CartSteps extends ScenarioSteps {
 
     @Step
     public void clickMyCartLink() {
-        homePage.open();
         homePage.clickOnAccountButton();
         homePage.clickMyCartLink();
     }
@@ -38,7 +30,6 @@ public class CartSteps extends ScenarioSteps {
 
     @Step
     public void addToCartHomeElizTop() {
-        homePage.open();
         homePage.clickElizKnitTop();
         homePage.clickElizColorSwatch();
         homePage.clickElizSize();
@@ -71,7 +62,7 @@ public class CartSteps extends ScenarioSteps {
     }
     @Step
     public void discountFieldReqMsg() {
-        Assert.assertEquals("This is a required field.", cartPage.getDiscountRequiredFieldErrMsg());
+        Assert.assertEquals(Messages.THIS_IS_A_REQUIRED_FIELD, cartPage.getDiscountRequiredFieldErrMsg());
     }
 
     @Step
@@ -97,6 +88,11 @@ public class CartSteps extends ScenarioSteps {
     @Step
     public void checkoutMethodTitleIsPresent() {
         Assert.assertEquals("CHECKOUT METHOD", checkoutPage.setCheckoutMethodTitle());
+    }
+
+    @Step
+    public void checkTotalIsCorrect() {
+        Assert.assertTrue(cartPage.verifyGrandTotal());
     }
 
 

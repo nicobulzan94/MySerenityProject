@@ -1,36 +1,15 @@
 package org.fasttrackit.features;
 
-import net.serenitybdd.junit.runners.SerenityRunner;
-import net.thucydides.core.annotations.Managed;
-import net.thucydides.core.annotations.Steps;
-import org.fasttrackit.steps.AddToCartSteps;
-import org.fasttrackit.steps.CartSteps;
-import org.fasttrackit.steps.LoginSteps;
-import org.junit.Before;
+import org.fasttrackit.utils.Constants;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
 
-@RunWith(SerenityRunner.class)
-public class CartTest {
-
-    @Managed(uniqueSession = true)
-    private WebDriver driver;
-    @Steps
-    private LoginSteps loginSteps;
-    @Steps
-    private CartSteps cartSteps;
-    @Steps
-    private AddToCartSteps addToCartSteps;
-    @Before
-    public void maximiseBrowser(){
-        driver.manage().window().maximize();
-    }
+public class CartTest extends BaseTest {
 
 
+    //loggedIn tests
     @Test
     public void productNotAddedtoCartErr(){
-        loginSteps.doLogin("test@yopmail.com","test123");
+        loginSteps.doLogin(Constants.USER_EMAIL,Constants.USER_PASS);
         addToCartSteps.navigateToSaleOxfordShirtPg();
         addToCartSteps.clickATCSaleOxfordShirt();
         addToCartSteps.selectSwatchRequiredErrMsg();
@@ -38,7 +17,7 @@ public class CartTest {
 
     @Test
     public void addToCartSuccessfully() {
-        loginSteps.doLogin("test@yopmail.com","test123");
+        loginSteps.doLogin(Constants.USER_EMAIL,Constants.USER_PASS);
         addToCartSteps.navigateToSaleOxfordShirtPg();
         addToCartSteps.selectColorSwatchSaleOxfordShirt();
         addToCartSteps.selectSizeSwatchSaleOxfordShirt();
@@ -47,14 +26,15 @@ public class CartTest {
     }
 
     @Test
-    public void proceedToCheckoutSuccessfullyLoggedIn() {
-        loginSteps.doLogin("test@yopmail.com","test123");
+    public void proceedToCheckoutSuccessfully() {
+        loginSteps.doLogin(Constants.USER_EMAIL,Constants.USER_PASS);
         cartSteps.clickOnLogo();
         cartSteps.addToCartHomeElizTop();
         cartSteps.proceedToCheckout();
         cartSteps.checkoutTitleIsPresent();
     }
 
+    //notLoggedIn Tests
     @Test
     public void miniCartIsEmpty() {
         cartSteps.clickCartButton();
@@ -100,6 +80,15 @@ public class CartTest {
         cartSteps.addToCartHomeElizTop();
         cartSteps.proceedToCheckout();
         cartSteps.checkoutMethodTitleIsPresent();
+    }
+
+    @Test
+    public void isTotalCartSumCorrect() {
+        addToCartSteps.doATCSaleOxfordShirt();
+        cartSteps.clickOnLogo();
+        cartSteps.addToCartHomeElizTop();
+        cartSteps.checkTotalIsCorrect();
+
     }
 
 
